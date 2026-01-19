@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VT-2B Black | EMU AUDIO</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- ヘッダー（DAW風） -->
+        <div class="daw-header">
+            <div class="daw-controls">
+                <span class="daw-dot red"></span>
+                <span class="daw-dot yellow"></span>
+                <span class="daw-dot green"></span>
+            </div>
+            <div class="daw-title">VT-2B Black - EMU AUDIO</div>
+            <div class="daw-menu">
+                <span class="preset-name">Default</span>
+                <span class="preset-arrow">▼</span>
+            </div>
+        </div>
+
+        <!-- プラグインパネル（背景画像版） -->
+        <div class="plugin-container">
+            <div class="plugin-panel-bg">
+                <!-- ノブオーバーレイ（透明、操作用） -->
+                <div class="knob-overlay-container">
+                    <!-- Drive Knob -->
+                    <div class="knob-overlay" id="driveKnob" data-value="0" style="left: 115px; top: 390px;">
+                        <div class="knob-hitbox"></div>
+                    </div>
+
+                    <!-- Mix Knob -->
+                    <div class="knob-overlay" id="mixKnob" data-value="100" style="left: 655px; top: 390px;">
+                        <div class="knob-hitbox"></div>
+                    </div>
+                </div>
+
+                <!-- 値表示 -->
+                <div class="value-display drive-value" id="driveValue">0.0</div>
+                <div class="value-display mix-value" id="mixValue">100%</div>
+            </div>
+        </div>
+
+        <!-- 情報パネル -->
+        <div class="info-panel">
+            <div class="info-section">
+                <h3>操作方法</h3>
+                <ul>
+                    <li><strong>ドラッグ</strong> - 上下にドラッグで値を調整</li>
+                    <li><strong>Shift+ドラッグ</strong> - 細かい調整</li>
+                    <li><strong>ホイール</strong> - 素早い値変更</li>
+                    <li><strong>ダブルクリック</strong> - デフォルト値にリセット</li>
+                </ul>
+            </div>
+            <div class="info-section">
+                <h3>推奨設定</h3>
+                <div class="preset-cards">
+                    <div class="preset-card" data-drive="4.0" data-mix="70">
+                        <span class="preset-title">ドラムバス</span>
+                        <span class="preset-values">Drive: 4.0 / Mix: 70%</span>
+                    </div>
+                    <div class="preset-card" data-drive="2.5" data-mix="50">
+                        <span class="preset-title">ステムミックス</span>
+                        <span class="preset-values">Drive: 2.5 / Mix: 50%</span>
+                    </div>
+                    <div class="preset-card" data-drive="1.5" data-mix="40">
+                        <span class="preset-title">マスター</span>
+                        <span class="preset-values">Drive: 1.5 / Mix: 40%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

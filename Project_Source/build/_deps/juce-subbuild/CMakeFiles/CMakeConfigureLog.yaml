@@ -1,0 +1,11 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/Users/manato/Documents/EA \u30d5\u309a\u30e9\u30af\u3099\u30a4\u30f3\u30c6\u3099\u30fc\u30bf/EA VT-2B/Project_Source/cmake-3.28.1-macos-universal/CMake.app/Contents/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
+      - "CMakeLists.txt:16 (project)"
+    message: |
+      The system is: Darwin - 24.5.0 - x86_64
+...

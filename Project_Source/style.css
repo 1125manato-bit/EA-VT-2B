@@ -1,0 +1,297 @@
+/* ========================================
+   VT-2B BLACK - EMU AUDIO Plugin UI
+   背景画像版 - ビンテージスタイル
+======================================== */
+
+:root {
+    /* カラーパレット */
+    --black-deep: #0a0a0a;
+    --black-base: #121212;
+    --black-surface: #1a1a1a;
+    --gray-dark: #2a2a2a;
+    --gray-medium: #3a3a3a;
+    --gray-text: #6a6a6a;
+    --silver-dark: #888888;
+    --silver-light: #b0b0b0;
+    --gold: #c9a85c;
+    --accent-blue: #4a9eff;
+
+    /* パネルサイズ（背景画像に合わせる） */
+    --panel-width: 800px;
+    --panel-height: 600px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(160deg, #1a1a2e 0%, #0f0f1a 50%, #0a0a12 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* アプリコンテナ */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+}
+
+/* DAW風ヘッダー */
+.daw-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+    padding: 8px 16px;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid #333;
+    border-bottom: none;
+    width: var(--panel-width);
+}
+
+.daw-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.daw-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.daw-dot.red {
+    background: #ff5f57;
+}
+
+.daw-dot.yellow {
+    background: #ffbd2e;
+}
+
+.daw-dot.green {
+    background: #28c940;
+}
+
+.daw-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--silver-light);
+    letter-spacing: 1px;
+}
+
+.daw-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background: var(--black-surface);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.preset-name {
+    font-size: 11px;
+    color: var(--silver-dark);
+}
+
+.preset-arrow {
+    font-size: 8px;
+    color: var(--gray-text);
+}
+
+/* プラグインコンテナ */
+.plugin-container {
+    filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.8));
+}
+
+/* 背景画像パネル */
+.plugin-panel-bg {
+    position: relative;
+    width: var(--panel-width);
+    height: var(--panel-height);
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid var(--gray-dark);
+    border-top: none;
+    overflow: hidden;
+}
+
+/* ノブオーバーレイコンテナ */
+.knob-overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* ノブオーバーレイ（透明、操作用） */
+.knob-overlay {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    pointer-events: all;
+    /* デバッグ用（本番では削除） */
+    /* background: rgba(255, 0, 0, 0.1); */
+    /* border-radius: 50%; */
+}
+
+.knob-hitbox {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.knob-overlay:hover {
+    /* ホバー時のハイライト（オプション） */
+    /* background: rgba(255, 255, 255, 0.05); */
+}
+
+.knob-overlay.dragging {
+    cursor: ns-resize;
+}
+
+/* 値表示 */
+.value-display {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gold);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 1px;
+    pointer-events: none;
+}
+
+.drive-value {
+    left: 115px;
+    top: 530px;
+    transform: translateX(-50%);
+}
+
+.mix-value {
+    left: 655px;
+    top: 530px;
+    transform: translateX(-50%);
+}
+
+/* 情報パネル */
+.info-panel {
+    display: flex;
+    gap: 20px;
+    width: var(--panel-width);
+}
+
+.info-section {
+    flex: 1;
+    background: rgba(26, 26, 26, 0.8);
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid var(--gray-dark);
+}
+
+.info-section h3 {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--silver-dark);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.info-section ul {
+    list-style: none;
+}
+
+.info-section li {
+    font-size: 11px;
+    color: var(--gray-text);
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+.info-section li strong {
+    color: var(--silver-dark);
+}
+
+/* プリセットカード */
+.preset-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.preset-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--black-surface);
+    border-radius: 6px;
+    border: 1px solid var(--gray-dark);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.preset-card:hover {
+    background: var(--black-base);
+    border-color: var(--gray-medium);
+}
+
+.preset-card.active {
+    border-color: var(--gold);
+    background: rgba(201, 168, 92, 0.1);
+}
+
+.preset-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--silver-light);
+}
+
+.preset-values {
+    font-size: 10px;
+    color: var(--gray-text);
+    font-variant-numeric: tabular-nums;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 900px) {
+    :root {
+        --panel-width: 600px;
+        --panel-height: 450px;
+    }
+
+    .knob-overlay {
+        width: 140px;
+        height: 140px;
+    }
+
+    .drive-value {
+        left: 86px;
+        top: 398px;
+    }
+
+    .mix-value {
+        left: 491px;
+        top: 398px;
+    }
+
+    .info-panel {
+        flex-direction: column;
+    }
+}

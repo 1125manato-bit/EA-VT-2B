@@ -1,0 +1,7 @@
+# This is a generated file and its contents are an internal implementation detail.
+# The patch step will be re-executed if anything in this file changes.
+# No other meaning or use of this file is supported.
+
+command (connected)=/Users/manato/Documents/EA プラグインデータ/EA VT-2B/Project_Source/cmake-3.28.1-macos-universal/CMake.app/Contents/bin/cmake;-Dcan_fetch=YES;-P;/Users/manato/Documents/EA プラグインデータ/EA VT-2B/Project_Source/build/_deps/juce-subbuild/juce-populate-prefix/tmp/juce-populate-gitupdate.cmake
+command (disconnected)=/Users/manato/Documents/EA プラグインデータ/EA VT-2B/Project_Source/cmake-3.28.1-macos-universal/CMake.app/Contents/bin/cmake;-Dcan_fetch=NO;-P;/Users/manato/Documents/EA プラグインデータ/EA VT-2B/Project_Source/build/_deps/juce-subbuild/juce-populate-prefix/tmp/juce-populate-gitupdate.cmake
+work_dir=/Users/manato/Documents/EA プラグインデータ/EA VT-2B/Project_Source/build/_deps/juce-src
