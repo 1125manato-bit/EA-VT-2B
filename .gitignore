@@ -1,0 +1,8 @@
+build/
+*.vst3/
+*.component/
+*.app/
+*.dll/
+.DS_Store
+.vscode/
+cmake-build-debug/
