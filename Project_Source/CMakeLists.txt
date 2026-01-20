@@ -13,9 +13,7 @@ include(FetchContent)
 
 FetchContent_Declare(
     JUCE
-    GIT_REPOSITORY https://github.com/juce-framework/JUCE.git
-    GIT_TAG 8.0.4
-    GIT_SHALLOW TRUE
+    URL https://github.com/juce-framework/JUCE/archive/refs/tags/8.0.4.zip
 )
 
 FetchContent_MakeAvailable(JUCE)
