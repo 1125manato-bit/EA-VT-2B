@@ -19,11 +19,22 @@ jobs:
       run: |
         call Project_Source\build.bat
 
+    - name: Install Inno Setup
+      shell: powershell
+      run: |
+        choco install innosetup
+
+    - name: Build Installer
+      shell: cmd
+      run: |
+        "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" Project_Source\installer_windows.iss
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: windows-plugins
+        name: windows-installer
         path: |
+          Project_Source/installer/*.exe
           Project_Source/build/**/*.vst3
           Project_Source/build/**/*.dll
         if-no-files-found: error
