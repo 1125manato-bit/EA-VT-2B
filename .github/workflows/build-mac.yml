@@ -26,7 +26,7 @@ jobs:
         ./build.sh Release
 
     - name: Import Certificate
-      if: ${{ secrets.MACOS_CERTIFICATE != '' }}
+      if: secrets.MACOS_CERTIFICATE != ''
       env:
         BUILD_CERTIFICATE_BASE64: ${{ secrets.MACOS_CERTIFICATE }}
         P12_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
@@ -50,7 +50,7 @@ jobs:
         security find-identity -v -p codesigning
 
     - name: Sign Plugin Binaries
-      if: ${{ secrets.MACOS_CERTIFICATE != '' }}
+      if: secrets.MACOS_CERTIFICATE != ''
       env:
          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
       run: |
@@ -73,14 +73,14 @@ jobs:
                  EA_VT-2B_Installer_macOS_unsigned.pkg
 
     - name: Sign Installer Package
-      if: ${{ secrets.MACOS_CERTIFICATE != '' }}
+      if: secrets.MACOS_CERTIFICATE != ''
       run: |
         productsign --sign "Developer ID Installer" \
                     EA_VT-2B_Installer_macOS_unsigned.pkg \
                     EA_VT-2B_Installer_macOS.pkg
 
     - name: Notarize Package
-      if: ${{ secrets.APPLE_ID != '' && secrets.APPLE_APP_SPECIFIC_PASSWORD != '' && secrets.APPLE_TEAM_ID != '' }}
+      if: secrets.APPLE_ID != '' && secrets.APPLE_APP_SPECIFIC_PASSWORD != '' && secrets.APPLE_TEAM_ID != ''
       env:
         APPLE_ID: ${{ secrets.APPLE_ID }}
         APP_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
@@ -93,12 +93,12 @@ jobs:
           --wait
 
     - name: Staple Ticket
-      if: ${{ secrets.APPLE_ID != '' }}
+      if: secrets.APPLE_ID != ''
       run: |
         xcrun stapler staple EA_VT-2B_Installer_macOS.pkg
 
     - name: Rename Unsigned Package (if signing skipped)
-      if: ${{ secrets.MACOS_CERTIFICATE == '' }}
+      if: secrets.MACOS_CERTIFICATE == ''
       run: |
         mv EA_VT-2B_Installer_macOS_unsigned.pkg EA_VT-2B_Installer_macOS.pkg
 
