@@ -29,6 +29,21 @@ jobs:
       run: |
         "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" Project_Source\installer_windows.iss
 
+    - name: Import Certificate
+      if: secrets.WINDOWS_CERTIFICATE != ''
+      shell: powershell
+      run: |
+        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.WINDOWS_CERTIFICATE }}")
+        [IO.File]::WriteAllBytes("$env:TEMP\cert.pfx", $pfx_cert_byte)
+
+    - name: Sign Installer
+      if: secrets.WINDOWS_CERTIFICATE != ''
+      shell: cmd
+      env:
+        CERT_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+      run: |
+        "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe" sign /f "%TEMP%\cert.pfx" /p "%CERT_PASSWORD%" /tr http://timestamp.digicert.com /td sha256 /fd sha256 Project_Source\installer\*.exe
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
