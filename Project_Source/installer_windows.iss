@@ -35,7 +35,7 @@ Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
 
 [Files]
 ; VST3 Plugin
-Source: "Project_Source\build\EA_VT_2B_artefacts\Release\VST3\EA VT-2B.vst3\*"; DestDir: "{commoncf64}\VST3\EA VT-2B.vst3"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "build\EA_VT_2B_artefacts\Release\VST3\EA VT-2B.vst3\*"; DestDir: "{commoncf64}\VST3\EA VT-2B.vst3"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\Uninstall {#MyAppName}"; Filename: "{uninstallexe}"
